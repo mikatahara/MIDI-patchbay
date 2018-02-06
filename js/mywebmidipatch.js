@@ -1,15 +1,15 @@
-/*	------------------------------------------------------------------------ */
-/* MIDI Patch ‚ğÀŒ»‚·‚é */
+ï»¿/*	------------------------------------------------------------------------ */
+/* MIDI Patch ã‚’å®Ÿç¾ã™ã‚‹ */
 {
 
 	var numMidiIn=0;
 	var numMidiOut=0;
-	var ftg1=null;	/* Input ‚ªcAOutput‚ª‰¡‚Ìƒe[ƒuƒ‹ MIDI In to Out*/
-	var ftg2=null;	/* Input ‚ªcAOutput‚ª‰¡‚Ìƒe[ƒuƒ‹ System Realtime On/Off*/
-	var icount=0;	/* •\¦‚ÌƒŠƒ^[ƒ“—p*/
+	var ftg1=null;	/* Input ãŒç¸¦ã€OutputãŒæ¨ªã®ãƒ†ãƒ¼ãƒ–ãƒ« MIDI In to Out*/
+	var ftg2=null;	/* Input ãŒç¸¦ã€OutputãŒæ¨ªã®ãƒ†ãƒ¼ãƒ–ãƒ« System Realtime On/Off*/
+	var icount=0;	/* è¡¨ç¤ºã®ãƒªã‚¿ãƒ¼ãƒ³ç”¨*/
 	var BrowserOut=0;
 
-	/* MIDI API‚ğ‹N‚±‚· */
+	/* MIDI APIã‚’èµ·ã“ã™ */
 	window.onload = function()
 	{
 		navigator.requestMIDIAccess( { sysex: true } ).then( successPatch, failure );
@@ -40,9 +40,9 @@
 		if(input_menu_id!=null) setInputDeviceSelect();
 		if(output_menu_id!=null) setOutputDeviceSelect();
 
-		if(m!=null){						//MIDI‚ªg‚¦‚éê‡
-			numMidiIn = inputs.length;		//MIDI Input ‚Ì”
-			numMidiOut = outputs.length;	//MIDI Output‚Ì”
+		if(m!=null){						//MIDIãŒä½¿ãˆã‚‹å ´åˆ
+			numMidiIn = inputs.length;		//MIDI Input ã®æ•°
+			numMidiOut = outputs.length;	//MIDI Outputã®æ•°
 
 /*			log.font = "12pt Arial";
 
@@ -60,19 +60,19 @@
 			log.innerText +="\n";
 */
 
-			/* MIDI In ‚Ì“ü—Íƒ|[ƒgAFmidiin‚ğ¶¬‚·‚é */ 
+			/* MIDI In ã®å…¥åŠ›ãƒãƒ¼ãƒˆã€Fmidiinã‚’ç”Ÿæˆã™ã‚‹ */ 
 			for(i=0; i<numMidiIn; i++){
 				inputs[i].onmidimessage =handleMIDIMessage2;
 			}
 		}
 
-		guiInit();	//GUI‚Ì‰Šú‰»
+		guiInit();	//GUIã®åˆæœŸåŒ–
 
-		alert( "OK MIDI ‚ªg‚¦‚Ü‚·" );
+		alert( "Web MIDI API Ready!" );
 	}
 
 /* -------------------------------------------------------------------------- */
-/*	MIDI ‚ğó‚¯‚½‚Ì‹““® */
+/*	MIDI ã‚’å—ã‘ãŸæ™‚ã®æŒ™å‹• */
 	function handleMIDIMessage2(event) {
 		var str=null;
 		var i,k;
@@ -92,9 +92,9 @@
 			if( ftg2.toggle[id]==0 ) return;
 		}
 
-		/* MIDI o—Í */
+		/* MIDI å‡ºåŠ› */
 		for(i=0; i<numMidiOut; i++){
-			/* Flag‚ÌŠm”F */
+			/* Flagã®ç¢ºèª */
 			if(ftg1.toggle[outputs[i].id][id]==1){
 				outputs[i].send(event.data);
 			}
@@ -103,7 +103,7 @@
 	}
 
 /*	------------------------------------------------------------------------ */
-	/* ƒtƒ‰ƒO—p‚Ìƒoƒbƒtƒ@[ */
+	/* ãƒ•ãƒ©ã‚°ç”¨ã®ãƒãƒƒãƒ•ã‚¡ãƒ¼ */
 	var toggle=null;
 
 /*	------------------------------------------------------------------------ */
@@ -111,23 +111,23 @@
 	var canvas	= null;
 	var ctx		= null;
 	
-	var ixo		=240+100;		//lŠp‚Ì¶ã‚Ì‚w‚ÌêŠ
-	var iyo		=20+50;			//lŠp‚Ì¶ã‚Ì‚w‚ÌêŠ
-	var ixa		=120;			//ˆê‚Â‚ÌlŠp‚Ì‚w‚Ì’·‚³
-	var iya		=24;			//ˆê‚Â‚ÌlŠp‚Ì‚x‚Ì’·‚³
+	var ixo		=240+100;		//å››è§’ã®å·¦ä¸Šã®ï¼¸ã®å ´æ‰€
+	var iyo		=20+50;			//å››è§’ã®å·¦ä¸Šã®ï¼¸ã®å ´æ‰€
+	var ixa		=120;			//ä¸€ã¤ã®å››è§’ã®ï¼¸ã®é•·ã•
+	var iya		=24;			//ä¸€ã¤ã®å››è§’ã®ï¼¹ã®é•·ã•
 
-	var jxo		=ixo-48;		//‚à‚¤ˆê‚Â‚ÌlŠp‚Ì‚w‚ÌêŠ
+	var jxo		=ixo-48;		//ã‚‚ã†ä¸€ã¤ã®å››è§’ã®ï¼¸ã®å ´æ‰€
 
-	var itxb	=jxo-ixa;		//¶•¶š—ñ‚Ì‚w‚ÌêŠ
-	var ityb	=iyo+10;		//¶•¶š—ñ‚Ì‚x‚ÌêŠ
-	var itln	=ixa-10;		//•¶š—ñ‚Ì’·‚³‚ÌÅ‘å
+	var itxb	=jxo-ixa;		//å·¦æ–‡å­—åˆ—ã®ï¼¸ã®å ´æ‰€
+	var ityb	=iyo+10;		//å·¦æ–‡å­—åˆ—ã®ï¼¹ã®å ´æ‰€
+	var itln	=ixa-10;		//æ–‡å­—åˆ—ã®é•·ã•ã®æœ€å¤§
 
-	var jtxb	=ixo+10;		//ã•¶š—ñ‚Ì‚w‚ÌêŠ
-	var jtyb	=iyo-20;		//ã•¶š—ñ‚Ì‚x‚ÌêŠ
+	var jtxb	=ixo+10;		//ä¸Šæ–‡å­—åˆ—ã®ï¼¸ã®å ´æ‰€
+	var jtyb	=iyo-20;		//ä¸Šæ–‡å­—åˆ—ã®ï¼¹ã®å ´æ‰€
 
-	var jtxb2	=jxo+4;			//F8•\¦‚ÌˆÊ’u
+	var jtxb2	=jxo+4;			//F8è¡¨ç¤ºã®ä½ç½®
 
-	/* GUI‚Ì‰Šú‰» */
+	/* GUIã®åˆæœŸåŒ– */
 	function guiInit()
 	{
 		var i,j;
@@ -148,18 +148,17 @@
 		ftg2.fSetCanvas(canvas);
 		ftg2.fDraw();
 
-		//MIDI In ‚Ì–¼‘O‚ğ•\¦
+		//MIDI In ã®åå‰ã‚’è¡¨ç¤º
 		ctx.fillStyle = '#dddddd';
 		for(i=0; i<numMidiIn; i++){
-			ctx.fillText(inputs[i].name, itxb, ityb+inputs[i].id*iya,itln);  
+			ctx.fillText(inputs[i].name, itxb, ityb+i*iya,itln);  
 		}
 		ctx.fillText("Browser", itxb, ityb+numMidiIn*iya,itln);  
-		BrowserOut=numMidiIn;	//Browser‚Ì“ü—Í‚ğAMidiInƒ|[ƒg‚ÌŸ‚Éİ’è
+		BrowserOut=numMidiIn;	//Browserã®å…¥åŠ›ã‚’ã€MidiInãƒãƒ¼ãƒˆã®æ¬¡ã«è¨­å®š
 
-		//MIDI Out‚Ì–¼‘O‚ğ•\¦
+		//MIDI Outã®åå‰ã‚’è¡¨ç¤º
 		for(i=0; i<numMidiOut; i++){
-			ctx.fillText(outputs[i].name, jtxb+outputs[i].id*ixa, jtyb,itln);  
-//			ctx.fillText(outputs[i].name, jtxb+i*ixa, jtyb,itln);  
+			ctx.fillText(outputs[i].name, jtxb+i*ixa, jtyb,itln);  
 		}
 
 		ctx.fillText("F8", jtxb2,jtyb,itln);
@@ -182,9 +181,9 @@
 		}
 		sysex.length=j;
 
-		/* MIDI o—Í */
+		/* MIDI å‡ºåŠ› */
 		for(i=0; i<numMidiOut; i++){
-			/* Flag‚ÌŠm”F */
+			/* Flagã®ç¢ºèª */
 			if(ftg1.toggle[outputs[i].id][BrowserOut]==1){
 				outputs[i].send(sysex);
 			}
