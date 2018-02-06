@@ -142,10 +142,12 @@
 
 		ftg1 = new FToggleSW(ixo,ixa,iyo,iya,numMidiOut,numMidiIn+1);
 		ftg1.fSetCanvas(canvas);
+		ftg1.fLineColor('#dddddd');
 		ftg1.fDraw();
 	
 		ftg2 = new FToggleSW(jxo,iya,iyo,iya,1,numMidiIn);
 		ftg2.fSetCanvas(canvas);
+		ftg2.fLineColor('#dddddd');
 		ftg2.fDraw();
 
 		//MIDI In の名前を表示

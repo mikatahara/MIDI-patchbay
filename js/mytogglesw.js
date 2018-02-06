@@ -39,6 +39,10 @@ FToggleSW.prototype={
 
 	},
 
+	fLineColor : function(v){
+		this.ctx.strokeStyle = v;
+	}
+
 	/* Mouse をクリックした時の挙動 */
 	/* Mouse クリックの範囲は ixo->ixe, iyo->iye */
 	fMouseClick : function(e){
