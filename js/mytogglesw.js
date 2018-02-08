@@ -1,4 +1,4 @@
-/* M x N ‚Ì˜g‚ğ‘‚¢‚ÄA‚»‚ê‚¼‚ê‚ÉƒIƒ“AƒIƒt‚Å‚«‚éƒgƒOƒ‹ƒXƒCƒbƒ` */
+ï»¿/* M x N ã®æ ã‚’æ›¸ã„ã¦ã€ãã‚Œãã‚Œã«ã‚ªãƒ³ã€ã‚ªãƒ•ã§ãã‚‹ãƒˆã‚°ãƒ«ã‚¹ã‚¤ãƒƒãƒ */
 function FToggleSW(ixo,ixa,iyo,iya,n,m){
 	var i,j;
 	this.cv=null;	//Canvas
@@ -43,8 +43,8 @@ FToggleSW.prototype={
 		this.ctx.strokeStyle = v;
 	},
 
-	/* Mouse ‚ğƒNƒŠƒbƒN‚µ‚½‚Ì‹““® */
-	/* Mouse ƒNƒŠƒbƒN‚Ì”ÍˆÍ‚Í ixo->ixe, iyo->iye */
+	/* Mouse ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸæ™‚ã®æŒ™å‹• */
+	/* Mouse ã‚¯ãƒªãƒƒã‚¯ã®ç¯„å›²ã¯ ixo->ixe, iyo->iye */
 	fMouseClick : function(e){
 		var ipx,ipy;
 		var bt = e.target.getBoundingClientRect();
@@ -68,12 +68,12 @@ FToggleSW.prototype={
 	},
 
 	/* -------------------------------------------------------------------------- */
-	/* ‰~‚ğÁ‚· */
+	/* å††ã‚’æ¶ˆã™ */
 	clear : function(jp,jpy){
 		this.ctx.clearRect(this.ixo+jp*this.ixa+1, this.iyo+jpy*this.iya+1, this.ixa-2, this.iya-2);
 	},
 
-	/* ‰~‚ğ•`‚­ */
+	/* å††ã‚’æã */
 	draw1 : function(jp,jpy) {
   		this.ctx.beginPath();
   		this.ctx.arc(this.ixo+jp*this.ixa+this.ixa/2, this.iyo+jpy*this.iya+this.iya/2, 10, 0, Math.PI*2, false);
