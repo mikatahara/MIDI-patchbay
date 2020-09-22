@@ -78,10 +78,9 @@
 		var i,k;
 
 		if( event.data.length>1) {
-//			log.innerText +="*";
-//			icount++;
-//			if(icount>47){ icount=0; log.innerText +="\n"; }
-			goMidiOut(this.id,event);
+			var ids=parseInt(this.id.substr(6),10);
+			console.log(this.id,ids);
+			goMidiOut(ids,event);
 		}
 	}
 
@@ -95,7 +94,8 @@
 		/* MIDI 出力 */
 		for(i=0; i<numMidiOut; i++){
 			/* Flagの確認 */
-			if(ftg1.toggle[outputs[i].id][id]==1){
+			var ods=parseInt(outputs[i].id.substr(7),10);
+			if(ftg1.toggle[ods-1][id]==1){
 				outputs[i].send(event.data);
 			}
 		}
@@ -185,8 +185,10 @@
 
 		/* MIDI 出力 */
 		for(i=0; i<numMidiOut; i++){
+			var ods=parseInt(outputs[i].id.substr(7),10);
+
 			/* Flagの確認 */
-			if(ftg1.toggle[outputs[i].id][BrowserOut]==1){
+			if(ftg1.toggle[ods-1][BrowserOut]==1){
 				outputs[i].send(sysex);
 			}
 		}
