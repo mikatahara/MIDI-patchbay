@@ -8,6 +8,8 @@
 	var ftg2=null;	/* Input が縦、Outputが横のテーブル System Realtime On/Off*/
 	var icount=0;	/* 表示のリターン用*/
 	var BrowserOut=0;
+	var mmidiin=[];
+	var mmidiout=[];
 
 	/* MIDI APIを起こす */
 	window.onload = function()
@@ -61,9 +63,14 @@
 */
 
 			/* MIDI In の入力ポート、Fmidiinを生成する */ 
-			for(i=0; i<numMidiIn; i++){
+			for(var i=0; i<numMidiIn; i++){
 				inputs[i].onmidimessage =handleMIDIMessage2;
+				mmidiin[inputs[i].name]=i;
 			}
+			for(var i=0; i<numMidiOut; i++){
+				mmidiout[outputs[i].name]=i;
+			}
+
 		}
 
 		guiInit();	//GUIの初期化
@@ -78,7 +85,8 @@
 		var i,k;
 
 		if( event.data.length>1) {
-			var ids=parseInt(this.id.substr(6),10);
+//			var ids=parseInt(this.id.substr(6),10);
+			var ids=mmidiin[this.name];
 			console.log(this.id,ids);
 			goMidiOut(ids,event);
 		}
@@ -94,8 +102,8 @@
 		/* MIDI 出力 */
 		for(i=0; i<numMidiOut; i++){
 			/* Flagの確認 */
-			var ods=parseInt(outputs[i].id.substr(7),10);
-			if(ftg1.toggle[ods-1][id]==1){
+//			var ods=parseInt(outputs[i].id.substr(7),10);
+			if(ftg1.toggle[i][id]==1){
 				outputs[i].send(event.data);
 			}
 		}
@@ -185,10 +193,10 @@
 
 		/* MIDI 出力 */
 		for(i=0; i<numMidiOut; i++){
-			var ods=parseInt(outputs[i].id.substr(7),10);
+//			var ods=parseInt(outputs[i].id.substr(7),10);
 
 			/* Flagの確認 */
-			if(ftg1.toggle[ods-1][BrowserOut]==1){
+			if(ftg1.toggle[i][BrowserOut]==1){
 				outputs[i].send(sysex);
 			}
 		}
